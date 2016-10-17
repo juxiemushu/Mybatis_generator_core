@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wei.Inter.SturesultMapper" >
+  <resultMap id="BaseResultMap" type="com.wei.Model.Sturesult" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stuId" property="stuid" jdbcType="VARCHAR" />
+    <result column="whichLesson" property="whichlesson" jdbcType="VARCHAR" />
+    <result column="resSingle" property="ressingle" jdbcType="INTEGER" />
+    <result column="resMore" property="resmore" jdbcType="INTEGER" />
+    <result column="resTotal" property="restotal" jdbcType="INTEGER" />
+    <result column="joinTime" property="jointime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stuId, whichLesson, resSingle, resMore, resTotal, joinTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_sturesult
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_sturesult
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wei.Model.Sturesult" >
+    insert into tb_sturesult (id, stuId, whichLesson, 
+      resSingle, resMore, resTotal, 
+      joinTime)
+    values (#{id,jdbcType=INTEGER}, #{stuid,jdbcType=VARCHAR}, #{whichlesson,jdbcType=VARCHAR}, 
+      #{ressingle,jdbcType=INTEGER}, #{resmore,jdbcType=INTEGER}, #{restotal,jdbcType=INTEGER}, 
+      #{jointime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wei.Model.Sturesult" >
+    insert into tb_sturesult
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stuid != null" >
+        stuId,
+      </if>
+      <if test="whichlesson != null" >
+        whichLesson,
+      </if>
+      <if test="ressingle != null" >
+        resSingle,
+      </if>
+      <if test="resmore != null" >
+        resMore,
+      </if>
+      <if test="restotal != null" >
+        resTotal,
+      </if>
+      <if test="jointime != null" >
+        joinTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stuid != null" >
+        #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="whichlesson != null" >
+        #{whichlesson,jdbcType=VARCHAR},
+      </if>
+      <if test="ressingle != null" >
+        #{ressingle,jdbcType=INTEGER},
+      </if>
+      <if test="resmore != null" >
+        #{resmore,jdbcType=INTEGER},
+      </if>
+      <if test="restotal != null" >
+        #{restotal,jdbcType=INTEGER},
+      </if>
+      <if test="jointime != null" >
+        #{jointime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wei.Model.Sturesult" >
+    update tb_sturesult
+    <set >
+      <if test="stuid != null" >
+        stuId = #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="whichlesson != null" >
+        whichLesson = #{whichlesson,jdbcType=VARCHAR},
+      </if>
+      <if test="ressingle != null" >
+        resSingle = #{ressingle,jdbcType=INTEGER},
+      </if>
+      <if test="resmore != null" >
+        resMore = #{resmore,jdbcType=INTEGER},
+      </if>
+      <if test="restotal != null" >
+        resTotal = #{restotal,jdbcType=INTEGER},
+      </if>
+      <if test="jointime != null" >
+        joinTime = #{jointime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wei.Model.Sturesult" >
+    update tb_sturesult
+    set stuId = #{stuid,jdbcType=VARCHAR},
+      whichLesson = #{whichlesson,jdbcType=VARCHAR},
+      resSingle = #{ressingle,jdbcType=INTEGER},
+      resMore = #{resmore,jdbcType=INTEGER},
+      resTotal = #{restotal,jdbcType=INTEGER},
+      joinTime = #{jointime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

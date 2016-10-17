@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wei.Inter.QuestionsMapper" >
+  <resultMap id="BaseResultMap" type="com.wei.Model.Questions" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="joinTime" property="jointime" jdbcType="TIMESTAMP" />
+    <result column="lessonId" property="lessonid" jdbcType="INTEGER" />
+    <result column="taoTiId" property="taotiid" jdbcType="INTEGER" />
+    <result column="optionA" property="optiona" jdbcType="VARCHAR" />
+    <result column="optionB" property="optionb" jdbcType="VARCHAR" />
+    <result column="optionC" property="optionc" jdbcType="VARCHAR" />
+    <result column="optionD" property="optiond" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, subject, type, joinTime, lessonId, taoTiId, optionA, optionB, optionC, optionD, 
+    answer, note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_questions
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_questions
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wei.Model.Questions" >
+    insert into tb_questions (id, subject, type, 
+      joinTime, lessonId, taoTiId, 
+      optionA, optionB, optionC, 
+      optionD, answer, note
+      )
+    values (#{id,jdbcType=INTEGER}, #{subject,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, 
+      #{jointime,jdbcType=TIMESTAMP}, #{lessonid,jdbcType=INTEGER}, #{taotiid,jdbcType=INTEGER}, 
+      #{optiona,jdbcType=VARCHAR}, #{optionb,jdbcType=VARCHAR}, #{optionc,jdbcType=VARCHAR}, 
+      #{optiond,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wei.Model.Questions" >
+    insert into tb_questions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="jointime != null" >
+        joinTime,
+      </if>
+      <if test="lessonid != null" >
+        lessonId,
+      </if>
+      <if test="taotiid != null" >
+        taoTiId,
+      </if>
+      <if test="optiona != null" >
+        optionA,
+      </if>
+      <if test="optionb != null" >
+        optionB,
+      </if>
+      <if test="optionc != null" >
+        optionC,
+      </if>
+      <if test="optiond != null" >
+        optionD,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="jointime != null" >
+        #{jointime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lessonid != null" >
+        #{lessonid,jdbcType=INTEGER},
+      </if>
+      <if test="taotiid != null" >
+        #{taotiid,jdbcType=INTEGER},
+      </if>
+      <if test="optiona != null" >
+        #{optiona,jdbcType=VARCHAR},
+      </if>
+      <if test="optionb != null" >
+        #{optionb,jdbcType=VARCHAR},
+      </if>
+      <if test="optionc != null" >
+        #{optionc,jdbcType=VARCHAR},
+      </if>
+      <if test="optiond != null" >
+        #{optiond,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wei.Model.Questions" >
+    update tb_questions
+    <set >
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="jointime != null" >
+        joinTime = #{jointime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lessonid != null" >
+        lessonId = #{lessonid,jdbcType=INTEGER},
+      </if>
+      <if test="taotiid != null" >
+        taoTiId = #{taotiid,jdbcType=INTEGER},
+      </if>
+      <if test="optiona != null" >
+        optionA = #{optiona,jdbcType=VARCHAR},
+      </if>
+      <if test="optionb != null" >
+        optionB = #{optionb,jdbcType=VARCHAR},
+      </if>
+      <if test="optionc != null" >
+        optionC = #{optionc,jdbcType=VARCHAR},
+      </if>
+      <if test="optiond != null" >
+        optionD = #{optiond,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wei.Model.Questions" >
+    update tb_questions
+    set subject = #{subject,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      joinTime = #{jointime,jdbcType=TIMESTAMP},
+      lessonId = #{lessonid,jdbcType=INTEGER},
+      taoTiId = #{taotiid,jdbcType=INTEGER},
+      optionA = #{optiona,jdbcType=VARCHAR},
+      optionB = #{optionb,jdbcType=VARCHAR},
+      optionC = #{optionc,jdbcType=VARCHAR},
+      optionD = #{optiond,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
